@@ -11,7 +11,8 @@ export default function TopBar (){
         </ButtonFavorite>
         <Span alt="Pokemons favoritados">Favoritos</Span>
       </FavoriteContainer>
-      <SearchBar></SearchBar>
+      <SearchBar>
+      </SearchBar>
     </TopBarContainer>
 
   )
