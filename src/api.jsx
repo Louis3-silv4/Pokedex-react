@@ -1,19 +1,19 @@
 
 export async function getPokemon ( limit=30){
-  let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
-  const pokemons = []
-  const response = await fetch(url)
-  console.log({response})
-  if (response.status === 200) {
-    const data = await response.json()
+  let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
+  const pokemons = [];
+  const response = await fetch(url);
 
-    data.results.forEach( async (item) => {
-      const result = await getByUrl(item.url)
-      pokemons.push(result)
-    });
+  if (response.status === 200) {
+    const data = await response.json();
+
+    await Promise.all([...data.results.map(async item => {
+      const result = await getByUrl(item.url);
+      pokemons.push(result);
+    })]);
   }
 
-  return pokemons
+  return pokemons;
 }
 
 export function searchPokemon (setPokemonCallback){
