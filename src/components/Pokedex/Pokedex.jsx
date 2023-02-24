@@ -19,11 +19,13 @@ export default function Pokedex (){
  },[]);
   
   console.log(allPokemon)
- return hasPokemon ? (
-  <PokedexContainer>
-    {allPokemon.map((pokemon) => {
-      return <p key={pokemon.id}>{pokemon.name}</p>
-    })}
-  </PokedexContainer>
- ) : <p>Lista vazia</p>
+  return hasPokemon ? (
+    <PokedexContainer>
+      {allPokemon.map((pokemon) => {
+        return (
+          <PokemonCard key={pokemon.id} name={pokemon.name} id={pokemon.id} image={pokemon.sprites.other.home.front_default}/>
+          )
+      })}
+    </PokedexContainer>
+   ) : <p>Lista vazia</p>
 }
