@@ -1,19 +1,17 @@
-import {Card,Img,Info,TextInfo,ButtonInfo,ButtonDetalhar,ButtonFavoriteCard} from './styles'
+import {Card,Info,TextInfo,ButtonInfo,ButtonDetalhar,ButtonFavoriteCard} from './styles'
 
-export default function PokemonCard({name,sprites,id}){
+export default function PokemonCard({name,image,id}){
   return(
     <Card>
-      <Img>
-        <img src={sprites.other.home.front_default} alt={name}/>
-      </Img>
+        <img alt={name} src={image} style={{width: 100}}/>
       <Info>
         <TextInfo>
-          <span class='pokemon-id'>#${id}</span>
-          <h3 class='pokemon-name'>${name}</h3>
+          <span className ='pokemon-id'>#{id}</span>
+          <h3 className='pokemon-name'>{name}</h3>
         </TextInfo>
         <ButtonInfo>
-          <ButtonDetalhar onclick='detalharCard(${JSON.stringify(pokemon)})' alt='Para obter mais informações'>Detalhar</ButtonDetalhar>
-          <ButtonFavoriteCard onclick='favoriteCard(${JSON.stringify(pokemon)})' alt='Favorite seu pokemon preferido'>Favorite</ButtonFavoriteCard>
+          <ButtonDetalhar onclick='detalharCard((pokemon))' alt='Para obter mais informações'>Detalhar</ButtonDetalhar>
+          <ButtonFavoriteCard onclick='favoriteCard((pokemon))' alt='Favorite seu pokemon preferido'>Favorite</ButtonFavoriteCard>
         </ButtonInfo>
       </Info>
     </Card>
