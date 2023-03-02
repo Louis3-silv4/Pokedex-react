@@ -7,7 +7,6 @@ export default function Pokedex (){
   const [allPokemon,setAllPokemon] = useState([])
   const [hasPokemon,setHasPokemon] = useState(false)
 
-  
   useEffect(() => {
   getPokemon().then((pokemons) => {
     console.log({pokemons})

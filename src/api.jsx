@@ -16,16 +16,17 @@ export async function getPokemon ( limit=30){
   return pokemons;
 }
 
-export function searchPokemon (setPokemonCallback){
-  let url = `https://pokeapi.co/api/v2/pokemon/${setPokemonCallback}`
+export function searchPokemon  (pokemonTerm,setPokemonCallback) {
+  let url = `https://pokeapi.co/api/v2/pokemon/${pokemonTerm}`
 
   fetch(url)
   .then((res) => res.json())
   .then((data) => {
-   return(data.results);
+   setPokemonCallback(data)
   })
   .catch((err) => {
     console.log(err.message);
+    setPokemonCallback({})
   });
 }
 export async function getByUrl (url){

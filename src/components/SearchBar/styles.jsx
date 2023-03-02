@@ -16,13 +16,3 @@ export const Img = styled.img`
   background-color: rgba(158, 185, 225, 0.1);
   width:26px;
 `
-
-export const Title = styled.h2`
-  font-weight: 600;
-  color: #2F3133;
-  font-size:25px;
-  padding-left:40px;
-  margin-top:30px;  
-  margin-bottom:50px;
-
-`

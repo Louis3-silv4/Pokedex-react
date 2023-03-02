@@ -14,6 +14,5 @@ export default function TopBar (){
       <SearchBar>
       </SearchBar>
     </TopBarContainer>
-
   )
 }
