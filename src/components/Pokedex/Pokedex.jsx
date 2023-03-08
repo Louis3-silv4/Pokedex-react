@@ -1,11 +1,13 @@
 import {PokedexContainer} from './styles';
-import { useEffect,useState } from "react";
+import { useContext, useEffect,useState } from "react";
 import {getPokemon} from '../../api'
 import PokemonCard from '../PokemonCard/PokemonCard'
+import { SearchContext } from '../../context/SearchContext';
 
 export default function Pokedex (){
   const [allPokemon,setAllPokemon] = useState([])
   const [hasPokemon,setHasPokemon] = useState(false)
+  const {pokemon} = useContext(SearchContext)
 
   useEffect(() => {
   getPokemon().then((pokemons) => {
@@ -16,11 +18,15 @@ export default function Pokedex (){
     setAllPokemon(pokemons)
   })
  },[]);
+
+ const filteredPokemon = allPokemon.filter((item)=>item.id === pokemon.id)
+ const hasFilteredPokemon = filteredPokemon.length > 0 
+ const pokemonsList = hasFilteredPokemon ? filteredPokemon : allPokemon
   
-  console.log(allPokemon)
+  console.log({filteredPokemon})
   return hasPokemon ? (
     <PokedexContainer>
-      {allPokemon.map((pokemon) => {
+      {pokemonsList.map((pokemon) => {
         return (
           <PokemonCard key={pokemon.id} name={pokemon.name} id={pokemon.id} image={pokemon.sprites.other.home.front_default}/>
           )
