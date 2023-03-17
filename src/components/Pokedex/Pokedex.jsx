@@ -28,7 +28,7 @@ export default function Pokedex (){
     <PokedexContainer>
       {pokemonsList.map((pokemon) => {
         return (
-          <PokemonCard key={pokemon.id} name={pokemon.name} id={pokemon.id} image={pokemon.sprites.other.home.front_default}/>
+          <PokemonCard key={pokemon.id} pokemon={pokemon}/>
           )
       })}
     </PokedexContainer>

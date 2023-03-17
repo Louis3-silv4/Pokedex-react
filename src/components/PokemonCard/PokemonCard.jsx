@@ -1,18 +1,13 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import {Card,Info,TextInfo,ButtonInfo,ButtonDetalhar,ButtonFavoriteCard} from './styles'
+import { FavoriteContext } from "../../context/FavoritesContext";
 
-export default function PokemonCard({name,image,id}){
+
+export default function PokemonCard({pokemon}){
+  const {name,id} = pokemon 
+  const image = pokemon.sprites.other.home.front_default
   
-  const [isFavorite, setIsFavorite] = useState(false);
-  const redHeart = "❤️"
-  const blackHeart = "🖤"
-  const heart = isFavorite ? redHeart : blackHeart
-
-  const clickheart = (e) =>{
-    console.log(isFavorite)
-    setIsFavorite(!isFavorite);
-    console.log(isFavorite)
-  }
+  const {favoritePokemon} = useContext(FavoriteContext)
   return(
     <Card>
         <img alt={name} src={image} style={{width: 100}}/>
@@ -23,7 +18,7 @@ export default function PokemonCard({name,image,id}){
         </TextInfo>
         <ButtonInfo>
           <ButtonDetalhar alt='Para obter mais informações'>Detalhar</ButtonDetalhar>
-          <ButtonFavoriteCard onclick={clickheart} alt='Adicionar aos favoritos'>{heart}</ButtonFavoriteCard>
+          <ButtonFavoriteCard  onClick={()=>{favoritePokemon(pokemon)}} alt='Adicionar aos favoritos' >Favorite</ButtonFavoriteCard>
         </ButtonInfo>
       </Info>
     </Card>

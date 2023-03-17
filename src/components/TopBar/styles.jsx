@@ -41,7 +41,7 @@ export const ButtonFavorite = styled.button`
 export const IconFavorite = styled.img`
   width:25px;
 `
-export const Span = styled.span`
+export const Link = styled.a`
 font-size: medium;
 
 `

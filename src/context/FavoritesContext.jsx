@@ -6,25 +6,31 @@ export const FavoriteProvider = ({children}) =>{
   const [favoritesPokemon, setFavoritesPokemon] = useState(JSON.parse(localStorage.getItem('favorites')) || [])
 
   const isFavorite = (pokemonId) => {
-    const result = favorites.findIndex((item) => item.id === pokemonId)
+    const result = favoritesPokemon.findIndex((item) => item.id === pokemonId)
     return result > -1
   }
-  const favoriteCard = (pokemon)=>{
+//Mudar nome do favorite 
+  const favoritePokemon = (pokemon)=>{
     if(isFavorite(pokemon.id)){
       return alert(`${pokemon.name} já foi favoritado`)
     }
-    setFavoritesPokemon([...favorites, pokemon])
-    localStorage.setItem('favorites', JSON.stringify(isFavorite))
+
+    setFavoritesPokemon((prevState)=>{
+      const newFavoritesPokemon = [...prevState, pokemon] 
+      localStorage.setItem('favorites', JSON.stringify(newFavoritesPokemon))
+      return newFavoritesPokemon
+    })
   }
-  const unFavoriteCard = (index) => {
-    const newFavorites = [...favorites]
+
+  const unFavoritePokemon = (index) => {
+    const newFavorites = [...favoritesPokemon]
     newFavorites.splice(index, 1)
     setFavoritesPokemon(newFavorites)
     localStorage.setItem('favorites', JSON.stringify(newFavorites))
   }
     
   return (
-    <FavoriteContext.Provider value={{favoritesPokemon,favoriteCard,unFavoriteCard}}>
+    <FavoriteContext.Provider value={{favoritePokemon,unFavoritePokemon}}>
        {children}
     </FavoriteContext.Provider>
   )
