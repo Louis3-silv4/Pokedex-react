@@ -10,7 +10,7 @@ export const FavoriteProvider = ({children}) =>{
     return result > -1
   }
 //Mudar nome do favorite 
-  const favoritePokemon = (pokemon)=>{
+  const favoritePokemonCard = (pokemon)=>{
     if(isFavorite(pokemon.id)){
       return alert(`${pokemon.name} já foi favoritado`)
     }
@@ -30,7 +30,7 @@ export const FavoriteProvider = ({children}) =>{
   }
     
   return (
-    <FavoriteContext.Provider value={{favoritePokemon,unFavoritePokemon}}>
+    <FavoriteContext.Provider value={{favoritesPokemon,favoritePokemonCard,unFavoritePokemon}}>
        {children}
     </FavoriteContext.Provider>
   )
