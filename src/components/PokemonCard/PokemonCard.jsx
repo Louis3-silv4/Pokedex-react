@@ -7,7 +7,7 @@ export default function PokemonCard({pokemon}){
   const {name,id} = pokemon 
   const image = pokemon.sprites.other.home.front_default
   
-  const {favoritePokemon} = useContext(FavoriteContext)
+  const {favoritePokemonCard} = useContext(FavoriteContext)
   return(
     <Card>
         <img alt={name} src={image} style={{width: 100}}/>
@@ -18,7 +18,7 @@ export default function PokemonCard({pokemon}){
         </TextInfo>
         <ButtonInfo>
           <ButtonDetalhar alt='Para obter mais informações'>Detalhar</ButtonDetalhar>
-          <ButtonFavoriteCard  onClick={()=>{favoritePokemon(pokemon)}} alt='Adicionar aos favoritos' >Favorite</ButtonFavoriteCard>
+          <ButtonFavoriteCard  onClick={()=>{favoritePokemonCard(pokemon)}} alt='Adicionar aos favoritos' >Favorite</ButtonFavoriteCard>
         </ButtonInfo>
       </Info>
     </Card>
