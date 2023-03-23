@@ -3,7 +3,7 @@ import { useContext, useEffect,useState } from "react";
 import {getPokemon} from '../../api'
 import PokemonCard from '../PokemonCard/PokemonCard'
 import { SearchContext } from '../../context/SearchContext';
-import {MenssagemDeErro} from "../Favoritos/styles"
+import {MenssagemDeErro,Texto} from "../Favoritos/styles"
 
 export default function Pokedex (){
   const [allPokemon,setAllPokemon] = useState([])
@@ -33,5 +33,8 @@ export default function Pokedex (){
           )
       })}
     </PokedexContainer>
-   ) : <MenssagemDeErro>Lista vazia</MenssagemDeErro>
+   ) :
+    <MenssagemDeErro>
+      <Texto>Lista vazia</Texto>
+  </MenssagemDeErro>
 }

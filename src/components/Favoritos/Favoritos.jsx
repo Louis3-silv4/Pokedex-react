@@ -2,7 +2,7 @@ import { useContext,useState} from 'react';
 import { PokedexContainer } from "../Pokedex/styles";
 import { FavoriteContext } from "../../context/FavoritesContext";
 import PokemonCard from '../PokemonCard/PokemonCard'
-import {MenssagemDeErro} from "../Favoritos/styles"
+import {MenssagemDeErro,Texto} from "../Favoritos/styles"
 
 export default function Favoritos() {
   const {favoritesPokemon} = useContext(FavoriteContext)
@@ -16,7 +16,9 @@ return hasPokemon ? (
       )
     })}
   </PokedexContainer>
-) : <MenssagemDeErro>Não existe pokemon favoritado</MenssagemDeErro>
+) : <MenssagemDeErro>
+   <Texto>Não existe pokemon favoritado</Texto> 
+</MenssagemDeErro>
 
 }
 
