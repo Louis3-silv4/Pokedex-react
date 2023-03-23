@@ -39,9 +39,13 @@ export const ButtonFavorite = styled.button`
 
 `
 export const IconFavorite = styled.img`
-  width:25px;
+  width:30px;
+  
 `
 export const Link = styled.a`
-font-size: medium;
-
+ text-decoration: none;
+  display:flex;
+  align-items: center;
+  gap:10px;
+  font-size: medium;
 `

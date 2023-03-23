@@ -6,7 +6,6 @@ export default function TopBar (){
     <TopBarContainer>
       <Title> Escolha seu Pokémon</Title>
       <FavoriteContainer>
-     
         <Link href='/favoritos' alt="Pokemons favoritados">
           <IconFavorite src="src/assets/icons8-favorite-48.png"></IconFavorite>
           Favoritos
