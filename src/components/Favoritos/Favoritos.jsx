@@ -12,7 +12,7 @@ return hasPokemon ? (
   <PokedexContainer>
     {favoritesPokemon.map((pokemon) => {
       return (
-        <PokemonCard key={pokemon.id} pokemon={pokemon}/>
+        <PokemonCard key={pokemon.id} pokemon={pokemon} isFavorite={true}/>
       )
     })}
   </PokedexContainer>

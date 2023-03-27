@@ -40,3 +40,7 @@ export const ButtonFavoriteCard = styled.button`
   width:66px;
   height:20px
 `
+export const ButtonUnfavoriteCard = styled.button`
+  width:75px;
+  height:20px
+`

@@ -29,7 +29,7 @@ export default function Pokedex (){
     <PokedexContainer>
       {pokemonsList.map((pokemon) => {
         return (
-          <PokemonCard key={pokemon.id} pokemon={pokemon}/>
+          <PokemonCard key={pokemon.id} pokemon={pokemon} isFavorite={false}/>
           )
       })}
     </PokedexContainer>
