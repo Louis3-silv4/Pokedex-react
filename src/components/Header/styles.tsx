@@ -21,7 +21,7 @@ export const NavMenu = styled.div `
   gap:20px;
   padding-right:6.8rem;
 `
-export const NavItem = styled.a `
+export const NavItem = styled.a<{ alt: string }> `
   text-decoration: none;
   font-weight: 600;
   color: #fff;

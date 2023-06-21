@@ -4,8 +4,9 @@ import './App.css'
 import { SearchProvider } from './context/SearchContext'
 import { FavoriteProvider } from './context/FavoritesContext'
 import PokedexRoute from './routes/PokedexRoute'
+import React from 'react'
 
-export default function App() {
+const App: React.FC = ()=>{
   return (
     <FavoriteProvider>
       <SearchProvider>
@@ -17,4 +18,4 @@ export default function App() {
   )
 }
 
-
+export default App

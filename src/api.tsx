@@ -1,13 +1,15 @@
+import { Pokemon } from "./types/Pokemon";
+import  React  from "react";
 
-export async function getPokemon ( limit=30){
+export async function getPokemon (limit: number = 30):Promise<Pokemon[]>{
   let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
-  const pokemons = [];
+  const pokemons: Pokemon[] = []
   const response = await fetch(url);
 
   if (response.status === 200) {
     const data = await response.json();
 
-    await Promise.all([...data.results.map(async item => {
+    await Promise.all([...data.results.map(async (item:Pokemon) => {
       const result = await getByUrl(item.url);
       pokemons.push(result);
     })]);
@@ -16,8 +18,8 @@ export async function getPokemon ( limit=30){
   return pokemons;
 }
 
-export function searchPokemon  (pokemonTerm,setPokemonCallback) {
-  let url = `https://pokeapi.co/api/v2/pokemon/${pokemonTerm}`
+export function searchPokemon  (pokemonTerm:string,setPokemonCallback: React.Dispatch<React.SetStateAction<Pokemon | null>>): void{
+  let url = `https://pokeapi.co/api/v2/pokemon/${pokemonTerm}`;
 
   fetch(url)
   .then((res) => res.json())
@@ -26,10 +28,11 @@ export function searchPokemon  (pokemonTerm,setPokemonCallback) {
   })
   .catch((err) => {
     console.log(err.message);
-    setPokemonCallback({})
+    setPokemonCallback(null)
   });
 }
-export async function getByUrl (url){
+
+export async function getByUrl (url:string):Promise<Pokemon>{
  return fetch(url)
   .then((res) => res.json())
   .then((data) => {
