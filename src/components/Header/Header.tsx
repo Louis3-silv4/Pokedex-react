@@ -3,7 +3,7 @@ import {Img, ContainerHeader,NavMenu,NavItem} from './styles'
 
 const Header:React.FC = () => {
   return (
-    <ContainerHeader>
+    <ContainerHeader data-testId='container-header'>
       <Img src="src/assets/pokedex-3d-logo.png" alt="logo pokedex"/>
       <NavMenu>
         <NavItem href="https://www.linkedin.com/in/louise-alves-/" alt="Link para site externo" target="_blank">Linkedin</NavItem>

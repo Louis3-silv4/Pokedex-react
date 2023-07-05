@@ -4,7 +4,8 @@
   "env": {
     "browser": true,
     "es6": true,
-    "commonjs": true
+    "commonjs": true,
+    "jest":true
   },
   "rules": {
     "@typescript-eslint/no-unused-vars": [
@@ -14,7 +15,8 @@
         "args": "after-used",
         "ignoreRestSiblings": false
       }
-    ]
+    ],
+    "react/react-in-jsx-scope": "off"
   }, 
   "parser": "@typescript-eslint/parser"
 
