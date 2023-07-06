@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar/SearchBar'
 
 const TopBar: React.FC = () =>{
   return(
-    <TopBarContainer>
+    <TopBarContainer data-testId='container-topbar'>
       <Title> Escolha seu Pokémon</Title>
       <FavoriteContainer>
         <Link href='/favoritos' title="Pokemons favoritados">
