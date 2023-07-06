@@ -5,8 +5,10 @@ describe('Test jest', () => {
   it('should works', () => {
     expect(1).toBe(1)
   })
-  it('should render component', () =>{
+  it('should render App component', () =>{
     render(<App/>)
     expect(screen.getByTestId('container-header')).toBeInTheDocument()
+    expect(screen.getByTestId('container-topbar')).toBeInTheDocument()
+    //To-do: Como testar o componente <PokedexRoute/>
   })
 })
