@@ -7,6 +7,7 @@ describe('App', () => {
   })
   it('should render component header', () =>{
     render(<App/>)
+    
     expect(screen.getByTestId('container-header')).toBeInTheDocument()
     //To-do: Como testar o componente <PokedexRoute/>
   })
