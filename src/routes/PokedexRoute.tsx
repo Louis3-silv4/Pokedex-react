@@ -17,5 +17,10 @@ export default function PokedexRoute(){
     },
   ]);
 
-  return  <RouterProvider router={router} />
+  return ( 
+  <div data-testId='container-pokedexRoute'>
+   <RouterProvider router={router} />
+  </div> 
+  
+  )
 }

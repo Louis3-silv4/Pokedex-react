@@ -9,11 +9,14 @@ describe('App', () => {
     render(<App/>)
     
     expect(screen.getByTestId('container-header')).toBeInTheDocument()
-    //To-do: Como testar o componente <PokedexRoute/>
   })
   it('should render component topbar', () =>{
     render(<App/>)
     expect(screen.getByTestId('container-topbar')).toBeInTheDocument()
-    //To-do: Como testar o componente <PokedexRoute/>
+  })
+
+  it('should render component pokedex route', () =>{
+    render(<App/>)
+    expect(screen.getByTestId('container-pokedexRoute')).toBeInTheDocument()
   })
 })
