@@ -79,8 +79,6 @@ describe("API", () => {
 
   describe('getByUrl', () => {
     it('should fetch and return Pokemon data for a specific URL', async () => {
-     // ToDo: Se mudar o id da url o teste continua passando pois a estrutura de dado esperada é a mesma 
-     // Mudar ou isso torna o teste flexivel ??
       const pokemonId = 1
       const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
       const expectedData = {name:'bulbasaur',id:pokemonId,type:'grass'}
