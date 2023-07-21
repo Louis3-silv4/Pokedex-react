@@ -11,7 +11,7 @@ export  const PokemonCard: React.FC<{pokemon:Pokemon,isFavorite:boolean}> = ({po
  const buttonUnfavorite = <ButtonUnfavoriteCard onClick={()=>{unFavoritePokemon(pokemon)}} title='Retirar dos favoritos' >Unfavorite</ButtonUnfavoriteCard>
 
   const {name,id} = pokemon 
-  const image = pokemon.sprites.other.home.front_default
+  const image = pokemon.sprites?.other?.home?.front_default
   
   const {favoritePokemonCard,unFavoritePokemon} = useContext(FavoriteContext) as FavoriteContextType
   const [openModal,setOpenModal] = useState(false)

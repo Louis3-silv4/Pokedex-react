@@ -11,7 +11,7 @@ type ModalType = {
 
 export const Modal: React.FC<ModalType> = ({isOpen, isClose, pokemon}) => {
   const {id, name, types,weight,height,sprites,stats} = pokemon
-  const typeClass = types[0].type.name
+  const typeClass = types?.[0].type?.name
   const bgColor = typeColors[typeClass]
 
   if (isOpen) {
