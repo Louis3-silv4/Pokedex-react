@@ -11,7 +11,7 @@ export default function Favoritos() {
   const [hasPokemon] = useState(favoritesPokemon.length > 0);
 
  return hasPokemon ? (
-    <PokedexContainer>
+    <PokedexContainer data-testId='container-favoritos'>
       {favoritesPokemon.map((pokemon: Pokemon) => {
         return (
           <PokemonCard key={pokemon.id} pokemon={pokemon} isFavorite={true}/>
