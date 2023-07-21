@@ -8,7 +8,7 @@ const TopBar: React.FC = () =>{
       <Title> Escolha seu Pokémon</Title>
       <FavoriteContainer>
         <Link href='/favoritos' title="Pokemons favoritados">
-          <IconFavorite src="src/assets/icons8-favorite-48.png"/>
+          <IconFavorite src="src/assets/icons8-favorite-48.png" alt="icon favorito"/>
           Favoritos
         </Link>
       </FavoriteContainer>
