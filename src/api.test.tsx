@@ -1,4 +1,5 @@
-import { getPokemon, searchPokemon } from "./api"
+import { waitFor } from "@testing-library/react";
+import { getByUrl, getPokemon, searchPokemon } from "./api"
 
 describe("API", () => {
   afterEach(() => {
@@ -6,7 +7,6 @@ describe("API", () => {
   });
   describe("getPokemon", () => {
     it ("should fetch and return an array of pokemons",async () => {
-  
       const mockResponse = {
         status: 200,
         json: jest.fn().mockResolvedValue({
@@ -21,7 +21,8 @@ describe("API", () => {
       const pokemons = await getPokemon(3)
       
       expect(fetchMock).toBeCalled()
-      expect(fetch).toHaveBeenCalledWith('https://pokeapi.co/api/v2/pokemon?limit=3')
+      expect(fetchMock).toHaveBeenCalledWith('https://pokeapi.co/api/v2/pokemon?limit=3')
+
       expect(pokemons).toHaveLength(3)
     })
   
@@ -40,40 +41,73 @@ describe("API", () => {
   })
   describe('searchPokemons', ()=>{
     it('should fetch and set the Pokemon data when a valid term', async () => {
-      const pokemonTerm = 'pikachu';
+      const pokemonTermStub = 'pikachu';
       const mockResponse = { name: 'pikachu'};
-      const fetchMock = jest
-        .spyOn(global, 'fetch')
-        .mockResolvedValueOnce({
-          json: jest.fn().mockResolvedValueOnce(mockResponse),
-        } as unknown as Response);
+      const fetchMock = jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+        json: jest.fn().mockResolvedValueOnce(mockResponse),
+      } as unknown as Response);
   
       const setPokemonCallback = jest.fn();
   
-      await searchPokemon(pokemonTerm, setPokemonCallback);
+      searchPokemon(pokemonTermStub, setPokemonCallback)
   
       expect(fetchMock).toHaveBeenCalledTimes(1);
-      expect(fetchMock).toHaveBeenCalledWith(`https://pokeapi.co/api/v2/pokemon/${pokemonTerm}`);
+      expect(fetchMock).toHaveBeenCalledWith(`https://pokeapi.co/api/v2/pokemon/${pokemonTermStub}`);
 
-      await new Promise((resolve) => setTimeout(resolve, 0))
-  
-      expect(setPokemonCallback).toHaveBeenCalledTimes(1);
-      expect(setPokemonCallback).toHaveBeenCalledWith({ name: 'pikachu'});
+      await waitFor(() => {
+        expect(setPokemonCallback).toHaveBeenCalledTimes(1);
+        expect(setPokemonCallback).toHaveBeenCalledWith({ name: 'pikachu'})
+      })
     })
+
     it('should set the Pokemon callback to null when an error occurs during the fetch', async() => {
       const pokemonTerm = 'nonexistent-pokemon';
       const fetchMock = jest.spyOn(global, 'fetch').mockRejectedValue(new Error('Failed to fetch'));
       const setPokemonCallback = jest.fn();
   
-      await searchPokemon(pokemonTerm, setPokemonCallback);
+      searchPokemon(pokemonTerm, setPokemonCallback);
   
       expect(fetchMock).toHaveBeenCalledTimes(1);
       expect(fetchMock).toHaveBeenCalledWith(`https://pokeapi.co/api/v2/pokemon/${pokemonTerm}`);
+
+      await waitFor(() => {
+        expect(setPokemonCallback).toHaveBeenCalledTimes(1)
+        expect(setPokemonCallback).toHaveBeenCalledWith(null);
+      })
+    })
+  })
+
+  describe('getByUrl', () => {
+    it('should fetch and return Pokemon data for a specific URL', async () => {
+     // ToDo: Se mudar o id da url o teste continua passando pois a estrutura de dado esperada é a mesma 
+     // Mudar ou isso torna o teste flexivel ??
+      const pokemonId = 1
+      const url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
+      const expectedData = {name:'bulbasaur',id:pokemonId,type:'grass'}
+      const mockResponse = {
+        status:200,
+        json: jest.fn().mockResolvedValue(expectedData)
+      }
+      const fetchMock = jest.spyOn(global,'fetch').mockResolvedValue(mockResponse as unknown as Response)
+      const result =  await getByUrl(url)
+
+      expect(fetchMock).toHaveBeenCalledTimes(1)
+      expect(fetchMock).toHaveBeenCalledWith(url)
+
+      expect(result).toEqual(expectedData)
+    })
+
+    it('should take care of fetch error and return error ', async() => {
+      const url = 'https://pokeapi.co/api/v2/pokemon/2'
+      const error = new Error('Failed to fetch');
+      const fetchMock = jest.spyOn(global, 'fetch').mockRejectedValue(error);
   
-      await new Promise((resolve) => setTimeout(resolve, 0)); // Esperar pela rejeição do fetch
+      const result = await getByUrl(url);
   
-      expect(setPokemonCallback).toHaveBeenCalledTimes(1);
-      expect(setPokemonCallback).toHaveBeenCalledWith(null);
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      expect(fetchMock).toHaveBeenCalledWith(url);
+  
+      expect(result).toBe(error);
     })
   })
 })
