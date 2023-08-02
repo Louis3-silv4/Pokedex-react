@@ -23,7 +23,7 @@ const SearchBar: React.FC = () =>{
   return (
     <SearchContainer data-testId="container-searchbar">
       <Input type="text" placeholder="Procure seu pokémon" onChange={onInputHandler} />
-      <SearchButton type="submit" className="btn-search" id="btn-search" onClick={onButtonHandler}>
+      <SearchButton type="submit" className="btn-search" id="btn-search" data-testId='container-searchbutton' onClick={onButtonHandler}>
         <Img src="src/assets/lupa.svg" alt="Clique para procurar" />
       </SearchButton>
     </SearchContainer>

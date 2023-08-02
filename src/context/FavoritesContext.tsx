@@ -11,13 +11,15 @@ export type FavoriteContextType = {
 export const FavoriteContext = createContext<FavoriteContextType | null>(null);
 
 export const FavoriteProvider = ({children}:any) =>{
-  const [favoritesPokemon, setFavoritesPokemon] = useState<Pokemon[]>(JSON.parse(localStorage.getItem('favorites') as string) ?? [])
+  const favoritesFromStorage = localStorage.getItem('favorites')
+  const parsedFavorites = favoritesFromStorage ? JSON.parse(favoritesFromStorage) : [];
+  const [favoritesPokemon, setFavoritesPokemon] = useState<Pokemon[]>(parsedFavorites)
 
   const isFavorite = (pokemonId:number): boolean => {
     const result = favoritesPokemon.findIndex((item: { id: number; }) => item.id === pokemonId)
     return result > -1
   }
-//Mudar nome do favorite 
+  
   const favoritePokemonCard = (pokemon:Pokemon)=>{
     if(isFavorite(pokemon.id)){
       return alert(`${pokemon.name} já foi favoritado`)

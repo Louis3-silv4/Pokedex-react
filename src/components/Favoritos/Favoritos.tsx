@@ -1,7 +1,7 @@
 import { useContext,useState} from 'react';
 import { PokedexContainer } from "../Pokedex/styles";
 import { FavoriteContext, FavoriteContextType } from "../../context/FavoritesContext";
-import {PokemonCard} from '../PokemonCard/PokemonCard'
+import PokemonCard from '../PokemonCard/PokemonCard'
 import {MenssagemDeErro,Texto} from "../Favoritos/styles"
 import React from 'react';
 import { Pokemon } from '../../types/Pokemon';

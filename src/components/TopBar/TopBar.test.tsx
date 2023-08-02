@@ -1,6 +1,9 @@
-import { render,screen } from "@testing-library/react"
+import { render,screen, waitFor } from "@testing-library/react"
 import TopBar from "./TopBar"
 import { SearchProvider } from "../../context/SearchContext";
+import { Link } from "./styles";
+import userEvent from "@testing-library/user-event";
+import { MemoryRouter, Router } from "react-router-dom";
 
 describe("Component|TopBar", () => {
   it('should render component topbar', () => {

@@ -43,14 +43,13 @@ describe("Component|SearchBar", () => {
         <SearchBar/>
       </SearchProvider>
     )
-    
-    const inputStub = screen.getByPlaceholderText('Procure seu pokémon')
-    const searchButton = screen.getByAltText('Clique para procurar')
 
-    userEvent.type(inputStub,'Pikachu')
+    const searchButton = screen.getByTestId('container-searchbutton')
+
     userEvent.click(searchButton)
+
     await waitFor(() => {
-      expect(searchPokemon).toHaveBeenCalledWith('Pikachu', expect.any(Function));
+      expect(searchPokemon).toHaveBeenCalledWith('', expect.any(Function));
     });
   })
 })

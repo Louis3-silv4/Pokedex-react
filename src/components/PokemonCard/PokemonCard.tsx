@@ -5,7 +5,7 @@ import { FavoriteContext, FavoriteContextType } from "../../context/FavoritesCon
 import {Modal} from '../Modal/Modal';
 import { Pokemon } from '../../types/Pokemon';
 
-export  const PokemonCard: React.FC<{pokemon:Pokemon,isFavorite:boolean}> = ({pokemon,isFavorite}) => {
+const PokemonCard: React.FC<{pokemon:Pokemon,isFavorite:boolean}> = ({pokemon,isFavorite}) => {
 
  const buttonFavorite = <ButtonFavoriteCard  onClick={()=>{favoritePokemonCard(pokemon)}} title='Adicionar aos favoritos' >Favorite</ButtonFavoriteCard>
  const buttonUnfavorite = <ButtonUnfavoriteCard onClick={()=>{unFavoritePokemon(pokemon)}} title='Retirar dos favoritos' >Unfavorite</ButtonUnfavoriteCard>
@@ -23,12 +23,13 @@ export  const PokemonCard: React.FC<{pokemon:Pokemon,isFavorite:boolean}> = ({po
     setOpenModal(false)
   }
   return(
-    <Card>
+    <Card data-testId="container-pokemonCard">
         <img alt={name} src={image} style={{width: 100}}/>
       <Info>
         <TextInfo>
           <span className ='pokemon-id'>#{id}</span>
           <h3 className='pokemon-name'>{name}</h3>
+          <span data-testId="is-favorite">{isFavorite.toString()}</span>
         </TextInfo>
         <ButtonInfo>
           <ButtonDetalhar  onClick={handleModalOpen} title='Para obter mais informações'>Detalhar</ButtonDetalhar>
@@ -39,3 +40,4 @@ export  const PokemonCard: React.FC<{pokemon:Pokemon,isFavorite:boolean}> = ({po
     </Card>
   )
 }
+export default PokemonCard

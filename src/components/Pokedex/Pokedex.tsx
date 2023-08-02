@@ -1,11 +1,12 @@
 import {PokedexContainer} from './styles';
-import { useContext, useEffect,useState } from "react";
+import {useContext, useEffect,useState } from "react";
 import {getPokemon} from '../../api'
-import {PokemonCard} from '../PokemonCard/PokemonCard'
+import PokemonCard from '../PokemonCard/PokemonCard'
 import { SearchContext, SearchContextType } from '../../context/SearchContext';
 import {MenssagemDeErro,Texto} from "../Favoritos/styles"
 import React from 'react';
 import { Pokemon } from '../../types/Pokemon';
+import getFilteredPokemon from '../../utils/getFilteredPokemon';
 
 export default function Pokedex (){
   const [allPokemon,setAllPokemon] = useState<Pokemon[]>([])
@@ -17,14 +18,13 @@ export default function Pokedex (){
     console.log({pokemons})
     if (pokemons.length > 0) {
       setHasPokemon(true)
+      console.log("aquiii")
     }
     setAllPokemon(pokemons)
   })
  },[]);
 
- const filteredPokemon = allPokemon.filter((item)=>item.id === pokemon?.id)
- const hasFilteredPokemon = filteredPokemon.length > 0 
- const pokemonsList = hasFilteredPokemon ? filteredPokemon : allPokemon
+ const pokemonsList = getFilteredPokemon(allPokemon,pokemon?.id)
   
   console.log({pokemonsList})
   return hasPokemon ? (
